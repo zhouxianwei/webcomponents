@@ -1,0 +1,25 @@
+<element extend="button" name="xyz-btn" control="">
+	<template>
+		<style type="text/css">
+			:host{
+				border: 1px solid red;
+				overflow: hidden;
+				display: inline-block;
+			}
+			:host button{
+				font-size: 23px;
+			}
+			:host:hover{
+				font-size: 12px;
+			};
+			::content{
+				color: red;
+			};
+		</style>
+		
+
+	</template>
+	<script type="text/javascript">
+		xyz();
+	</script>
+</element>

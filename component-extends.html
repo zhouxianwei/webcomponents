@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>component - extends</title>
+    <link rel="import" href="button-template.html">
+    <link rel="import" href="component-extends-template.html">
+</head>
+
+<body>
+    <xyz-btn>222</xyz-btn>
+    <script type="text/javascript">
+    window.onload = function() {
+        /* body... */
+        var xyzBtn = document.createElement("xyz-btn");
+        xyzBtn.innerHTML = "123";
+        document.body.appendChild(xyzBtn);
+
+    }
+    </script>
+</body>
+
+</html>

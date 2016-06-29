@@ -1,0 +1,56 @@
+<element>
+    <template>
+        <style type="text/css">
+            div span{
+                font-size: 25px;
+            }
+            
+        </style>
+        <div>
+        	<span><content select="input"></content></span>
+        </div>
+        <script type="text/javascript">
+            
+        </script>
+    </template>
+    <script type="text/javascript">
+
+    (function (win, doc) {
+    	 /* body... */ 
+
+    	 var thisDoc = (doc._currentScript || doc.currentScript).ownerDocument;
+
+    	 var template = thisDoc.querySelector("template");
+
+    	 var content = template.content;
+
+    	 var proto = Object.create(HTMLDivElement.prototype);
+
+    	 proto.createdCallback = function () {
+    	 	 /* body... */ 
+    	 	 var shadowRoot = this.createShadowRoot();
+
+    	 	 var clone = doc.importNode(content, true);
+
+    	 	 shadowRoot.appendChild(clone);
+    	 }
+
+    	 doc.registerElement("z-column",{
+    	 	prototype: proto
+    	 })
+
+    }(window, document))
+    </script>
+</element>
+<!-- 样式选择器测试 -->
+<script type="text/javascript">
+    /**
+     *  div span //可以
+     *  content内元素模板style穿不透 主文档可以
+     *       *  
+     */
+</script>
+
+<!-- JavaScript子元素选择 -->
+<!-- JavaScript作用域 -->
+<!-- content标签 -->

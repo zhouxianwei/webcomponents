@@ -1,0 +1,39 @@
+<element>
+    <template>
+        <style type="text/css">
+			
+        </style>
+        <p>
+            <content></content>
+        </p>
+    </template>
+    <script type="text/javascript">
+    (function () {
+
+    	var thisDoc = (document._currentScript || document.currentScript).ownerDocument;
+
+    	var element = thisDoc.querySelector("element");
+
+    	var template = thisDoc.querySelector("template");
+    	
+    	var content = template.content;
+
+    	var proto = Object.create(HTMLParagraphElement.prototype);
+    	proto.createdCallback = function () {
+    		 /* body... */ 
+    		 var shadowRoot = this.createShadowRoot();
+
+    		 console.log(Object.prototype.toString.call(content.querySelector("p")));
+
+    		 var clone = document.importNode(content, true);
+
+    		 shadowRoot.appendChild(clone);
+    	}
+
+    	document.registerElement("z-p",{
+    		prototype: proto
+    	})
+
+    }())
+    </script>
+</element>

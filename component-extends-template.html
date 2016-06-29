@@ -1,0 +1,39 @@
+<element>
+    <template>
+        <z-btn>
+            <content></content>
+        </z-btn>
+    </template>
+    <script>
+    (function(win, doc) {
+        /* body... */
+
+        var thisDoc = (doc._currentScript || doc.currentScript).ownerDocument;
+
+        var element = thisDoc.getElementsByTagName("element")[0];
+
+        var template = thisDoc.querySelector("template");
+
+        var content = template.content;
+
+        console.log(content);
+
+        var proto = Object.create(HTMLButtonElement.prototype);
+
+        proto.createdCallback = function() {
+            var shadowRoot = this.createShadowRoot();
+
+            var clone = doc.importNode(content, true);
+
+            shadowRoot.appendChild(clone);
+
+        }
+
+        doc.registerElement("xyz-btn", {
+            prototype: proto
+        })
+
+
+    }(window, document));
+    </script>
+</element>

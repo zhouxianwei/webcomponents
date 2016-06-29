@@ -1,0 +1,42 @@
+<element>
+    <template>
+        <style>
+        :host {
+            color: red;
+            border: 1px solid #000;
+        }
+        </style>
+        <input value="" />
+    </template>
+    <script type="text/javascript">
+    (function() {
+
+        var thisDoc = (document._currentScript || document.currentScript).ownerDocument;
+
+        var element = thisDoc.querySelector("element");
+
+        var template = thisDoc.querySelector("template");
+
+        var content = template.content;
+
+        var proto = Object.create(HTMLInputElement.prototype);
+        proto.createdCallback = function() {
+            /* body... */
+            var shadowRoot = this.createShadowRoot();
+
+            content.querySelector("input").value = this.innerHTML;
+
+            console.log(Object.prototype.toString.call(content.querySelector("input")));
+
+            var clone = document.importNode(content, true);
+
+            shadowRoot.appendChild(clone);
+        }
+
+        document.registerElement("z-input", {
+            prototype: proto
+        })
+
+    }())
+    </script>
+</element>

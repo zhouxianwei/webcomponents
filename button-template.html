@@ -1,0 +1,42 @@
+<element>
+    <template>
+    	<style type="text/css">
+			button{
+				color: red;
+			}
+    	</style>
+        <button>
+            <content></content>
+        </button>
+    </template>
+    <script>
+    (function(win, doc) {
+        /* body... */
+
+        var thisDoc = (doc._currentScript || doc.currentScript).ownerDocument;
+
+        var element = thisDoc.getElementsByTagName("element")[0];
+
+        var template = thisDoc.querySelector("template");
+
+        var content = template.content;
+
+        var proto = Object.create(HTMLButtonElement.prototype);
+        
+        proto.createdCallback = function () {
+        	var shadowRoot = this.createShadowRoot();
+
+        	var clone = doc.importNode(content, true);
+
+        	shadowRoot.appendChild(clone);
+
+        }
+
+        doc.registerElement("z-btn",{
+        	prototype: proto
+        })
+
+
+    }(window, document));
+    </script>
+</element>
